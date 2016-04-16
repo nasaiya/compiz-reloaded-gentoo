@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gnome gtk kde +svg"
+IUSE="+cairo dbus fuse gtk kde +svg"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -42,10 +42,6 @@ COMMONDEPEND="
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
-	gnome? (
-		>=gnome-base/gnome-control-center-2.16.1:2
-		gnome-base/gnome-desktop:2
-	)
 	gtk? (
 		>=x11-libs/gtk+-2.8.0:2
 		>=x11-libs/libwnck-2.18.3:1
@@ -104,8 +100,6 @@ src_configure() {
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gnome) \
-		$(use_enable gnome metacity) \
 		$(use_enable gtk) \
 		$(use_enable kde kde4) \
 		--disable-kde 
@@ -141,9 +135,6 @@ src_install() {
 }
 
 pkg_postinst() {
-
-	ewarn "If you update to x11-wm/metacity-2.24 after you install ${P},"
-	ewarn "gtk-window-decorator will crash until you reinstall ${PN} again."
     elog ""
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not" 

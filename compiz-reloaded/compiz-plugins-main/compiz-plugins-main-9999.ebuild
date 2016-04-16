@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools eutils gnome2-utils git-r3
+inherit autotools eutils git-r3
 
 DESCRIPTION="Compiz Fusion Window Decorator Plugins"
 HOMEPAGE="http://www.compiz.org/"
@@ -14,13 +14,13 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-plugins-main.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="gconf"
+IUSE=""
 
 RDEPEND="
 	>=gnome-base/librsvg-2.14.0:2
 	x11-libs/cairo
 	>=compiz-reloaded/compiz-bcop-${PV}
-	>=compiz-reloaded/compiz-${PV}[gconf?]
+	>=compiz-reloaded/compiz-${PV}
 	virtual/jpeg:0
 	virtual/glu
 "
@@ -29,25 +29,18 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	virtual/pkgconfig
 	>=sys-devel/gettext-0.15
-	gconf? ( gnome-base/gconf:2 )
 "
 
 DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare() {
-        ## patches fail in compiz-reloaded
-	##if ! use gconf; then
-	##	epatch "${FILESDIR}"/${PN}-no-gconf.patch
-	##	eautoreconf
-	##fi
 	eautoreconf
 }
 
 src_configure() {
 	econf \
 		--enable-fast-install \
-		--disable-static \
-		$(use_enable gconf schemas)
+		--disable-static 
 }
 
 src_install() {
@@ -55,13 +48,7 @@ src_install() {
 	prune_libtool_files
 }
 
-pkg_preinst() {
-	use gconf && gnome2_gconf_savelist
-}
-
 pkg_postinst() {
-	use gconf && gnome2_gconf_install
-
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not" 
     elog "maintained by anyone. In fact, it might" 
