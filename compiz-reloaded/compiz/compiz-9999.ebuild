@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gtk +svg"
+IUSE="+cairo dbus fuse gtk +svg inotify"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -88,7 +88,8 @@ src_configure() {
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gtk) 
+		$(use_enable gtk) \
+		$(use_enable inotify)
 }
 
 src_install() {
