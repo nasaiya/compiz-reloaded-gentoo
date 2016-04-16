@@ -13,7 +13,7 @@ SRC_URI="https://github.com/compiz-reloaded/compiz/archive/v0.8.12.3.zip"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+cairo dbus fuse gconf gtk +svg"
+IUSE="+cairo dbus fuse gtk +svg"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -21,8 +21,8 @@ COMMONDEPEND="
 	dev-libs/libxslt
 	media-libs/libpng:0=
 	>=media-libs/mesa-10.3.7-r1
-	>=x11-base/xorg-server-1.1.1-r1
-	>=x11-libs/libX11-1.4
+	>=x11-base/xorg-server-1.12.4-r5
+	>=x11-libs/libX11-1.6.2
 	x11-libs/libxcb
 	x11-libs/libXcomposite
 	x11-libs/libXdamage
@@ -37,18 +37,18 @@ COMMONDEPEND="
 		x11-libs/cairo[X]
 	)
 	dbus? (
-		>=sys-apps/dbus-1.0
+		>=sys-apps/dbus-1.8.16
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
 	gtk? (
-		>=x11-libs/gtk+-2.8.0:2
-		>=x11-libs/libwnck-2.18.3:1
+		>=x11-libs/gtk+-2.24.28-r1:2
+		>=x11-libs/libwnck-2.31.0:1
 		x11-libs/pango
 	)
 	svg? (
-		>=gnome-base/librsvg-2.14.0:2
-		>=x11-libs/cairo-1.0
+		>=gnome-base/librsvg-2.40.11:2
+		>=x11-libs/cairo-1.14.2
 	)
 "
 
@@ -85,20 +85,7 @@ src_configure() {
 }
 
 src_install() {
-	#default
 	prune_libtool_files --all
-
-	# Install compiz-manager
-	#dobin "${FILESDIR}"/compiz-manager
-
-	# Add the full-path to lspci
-	#sed -i "s#lspci#/usr/sbin/lspci#" "${D}/usr/bin/compiz-manager" || die
-
-	# Fix the hardcoded lib paths
-	#sed -i "s#/lib/#/$(get_libdir)/#g" "${D}/usr/bin/compiz-manager" || die
-
-	# Create gentoo's config file
-	#dodir /etc/xdg/compiz
 
 	#cat <<- EOF > "${D}/etc/xdg/compiz/compiz-manager"
 	COMPIZ_BIN_PATH="/usr/bin/"
