@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gnome gconf gtk kde +svg"
+IUSE="+cairo dbus fuse gnome gtk kde +svg"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -45,7 +45,6 @@ COMMONDEPEND="
 	gnome? (
 		>=gnome-base/gnome-control-center-2.16.1:2
 		gnome-base/gnome-desktop:2
-		gconf? ( gnome-base/gconf:2 )
 	)
 	gtk? (
 		>=x11-libs/gtk+-2.8.0:2
@@ -82,11 +81,6 @@ src_prepare() {
 	# Patch for compatibility with gcc 4.7
 	##epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
 
-	## patch failed on compiz-reloaded...
-	##if ! use gnome || ! use gconf; then
-	##	epatch "${FILESDIR}"/${PN}-no-gconf.patch
-	##fi
-	
 	## these kde patches will probably fail as well but I haven't tried
 	if use kde; then
 		# patch for KDE 4.8 compatibility. Picked up from stuff overlay
@@ -100,16 +94,6 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf
-
-	# We make gconf optional by itself, but only if gnome is also
-	# enabled, otherwise we simply disable it.
-	if use gnome; then
-		myconf="${myconf} $(use_enable gconf)"
-	else
-		myconf="${myconf} --disable-gconf"
-	fi
-
 	econf \
 		--enable-fast-install \
 		--disable-static \
@@ -124,8 +108,7 @@ src_configure() {
 		$(use_enable gnome metacity) \
 		$(use_enable gtk) \
 		$(use_enable kde kde4) \
-		--disable-kde \
-		${myconf}
+		--disable-kde 
 }
 
 src_install() {
@@ -157,24 +140,15 @@ src_install() {
 	domenu "${FILESDIR}"/compiz.desktop
 }
 
-pkg_preinst() {
-	use gnome && use gconf && gnome2_gconf_savelist
-}
-
 pkg_postinst() {
-	use gnome && use gconf && gnome2_gconf_install
 
 	ewarn "If you update to x11-wm/metacity-2.24 after you install ${P},"
 	ewarn "gtk-window-decorator will crash until you reinstall ${PN} again."
-
+    elog ""
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not" 
     elog "maintained by anyone. In fact, it might" 
     elog "self-destruct at any moment... :)"
     elog ""
     elog "Configure options need to be fixed in this one.."
-}
-
-pkg_prerm() {
-	use gnome && gnome2_gconf_uninstall
 }
