@@ -23,10 +23,6 @@ RDEPEND="
 	gnome-base/librsvg
 "
 
-# missing icons and text fix, bug #487106
-## patches don't work in compiz-reloaded
-##PATCHES=( "${FILESDIR}/${P}-pygobject-glib-fix.patch" )
-
 DOCS=( AUTHORS )
 
 python_prepare_all() {
