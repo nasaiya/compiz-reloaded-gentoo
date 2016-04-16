@@ -1,0 +1,9 @@
+Put the compiz-reloaded folder in your local overlay.
+
+You might need to 
+# echo "compiz-reloaded" >> /etc/portage/categories
+
+Put the keywords and use files in your /etc/portage/package.use/ and /etc/portage/package.keywords/
+
+# emerge -av compiz-reloaded/compiz-reloaded-meta
+
