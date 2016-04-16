@@ -126,6 +126,4 @@ pkg_postinst() {
     elog "This is a homebrewed ebuild and is not" 
     elog "maintained by anyone. In fact, it might" 
     elog "self-destruct at any moment... :)"
-    elog ""
-    elog "Configure options need to be fixed in this one.."
 }
