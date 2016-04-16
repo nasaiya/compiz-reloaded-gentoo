@@ -35,7 +35,7 @@ COMMONDEPEND="
 	>=x11-libs/startup-notification-0.7
 	virtual/glu
 	cairo? (
-		x11-libs/cairo[X]
+		>=x11-libs/cairo-1.4[X]
 	)
 	dbus? (
 		>=sys-apps/dbus-1.0
@@ -50,7 +50,7 @@ COMMONDEPEND="
 	kde? ( >=kde-base/kwin-4.2.0 )
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
-		>=x11-libs/cairo-1.0
+		>=x11-libs/cairo-1.4
 	)
 "
 
