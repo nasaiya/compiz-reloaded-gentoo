@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gtk kde +svg"
+IUSE="+cairo dbus fuse gtk +svg"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -47,7 +47,6 @@ COMMONDEPEND="
 		>=x11-libs/libwnck-2.18.3:1
 		x11-libs/pango
 	)
-	kde? ( >=kde-base/kwin-4.2.0 )
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
 		>=x11-libs/cairo-1.4
@@ -77,15 +76,6 @@ src_prepare() {
 	# Patch for compatibility with gcc 4.7
 	##epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
 
-	## these kde patches will probably fail as well but I haven't tried
-	if use kde; then
-		# patch for KDE 4.8 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.8" && epatch "${FILESDIR}"/${PN}-kde-4.8.patch
-		# patch for KDE 4.9 compatibility. Picked up from http://cgit.compiz.org
-		has_version ">=kde-base/kwin-4.9" && epatch "${FILESDIR}"/${PN}-kde-4.9.patch
-		# patch for KDE 4.10 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.10" && epatch "${FILESDIR}"/${PN}-kde-4.10.patch
-	fi
 	eautoreconf
 }
 
@@ -93,16 +83,12 @@ src_configure() {
 	econf \
 		--enable-fast-install \
 		--disable-static \
-		--disable-gnome-keybindings \
-		--with-default-plugins \
 		$(use_enable svg librsvg) \
 		$(use_enable cairo annotate) \
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gtk) \
-		$(use_enable kde kde4) \
-		--disable-kde 
+		$(use_enable gtk) 
 }
 
 src_install() {
