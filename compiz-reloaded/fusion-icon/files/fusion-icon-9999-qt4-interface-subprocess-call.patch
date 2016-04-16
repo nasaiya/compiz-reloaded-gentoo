@@ -1,0 +1,24 @@
+--- ./FusionIcon/interface_qt/main.py.in.orig	2016-04-16 06:12:54.000000000 -0600
++++ ./FusionIcon/interface_qt/main.py.in	2016-04-16 12:19:50.946486417 -0600
+@@ -25,7 +25,7 @@
+ except ImportError:
+ 	from PyQt@qtver@ import QtGui as QtWidgets
+ from FusionIcon.start import wms, apps, options, decorators, init
+-from FusionIcon.execute import run
++import subprocess
+ 
+ class Build(QtWidgets.QApplication):
+ 	def reload_wm(self):
+@@ -81,10 +81,10 @@
+ 		self.Tray.menu = QtWidgets.QMenu()
+ 
+ 		if 'ccsm' in apps:
+-			self.Tray.menu.addAction(QtGui.QIcon.fromTheme('preferences-system'), apps['ccsm'].label, lambda: run(['ccsm']))
++			self.Tray.menu.addAction(QtGui.QIcon.fromTheme('preferences-system'), apps['ccsm'].label, lambda: subprocess.call(['ccsm']))
+ 		if 'emerald theme manager' in apps:
+ 			self.Tray.menu.addAction(QtGui.QIcon.fromTheme('emerald-theme-manager', QtGui.QIcon('/usr/share/pixmaps/emerald-theme-manager-icon.png')), \
+-			  apps['emerald theme manager'].label, lambda: run(apps['emerald theme manager'].command))
++			  apps['emerald theme manager'].label, lambda: subprocess.call(apps['emerald theme manager'].command))
+ 		if 'ccsm' in apps or 'emerald theme manager' in apps:
+ 			self.Tray.menu.addSeparator()
+ 

@@ -17,28 +17,38 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/fusion-icon.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+gtk qt4"
+IUSE="gtk qt4 qt5"
 
-REQUIRED_USE="|| ( gtk qt4 )"
+REQUIRED_USE="gtk? ( !qt4 !qt5 ) qt4? ( !qt5 )"
 
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${MINIMUM_COMPIZ_RELEASE}
 	>=compiz-reloaded/compiz-${MINIMUM_COMPIZ_RELEASE}
 	x11-apps/xvinfo
 	gtk? ( >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}] )
-	qt4? ( dev-python/PyQt4[X,${PYTHON_USEDEP}] )"
+	gtk? ( dev-libs/libappindicator )
+	qt4? ( dev-python/PyQt4[X,${PYTHON_USEDEP}] )
+	qt5? ( dev-python/PyQt5[${PYTHON_USEDEP}] )
+"
+
 DEPEND="${RDEPEND}"
 
 ## no idea why this was here
 ##S="${WORKDIR}/${PN}"
 
-## patches don't work
-##PATCHES=( "${FILESDIR}"/${P}-qt4-interface-subprocess-call.patch )
+src_prepare(){
+    if use qt4; then
+        epatch "${FILESDIR}"/${P}-qt4-interface-subprocess-call.patch
+    fi
+}
 
 python_install() {
 	distutils-r1_python_install
-	use gtk || rm -r "${D}$(python_get_sitedir)/FusionIcon/interface_gtk" || die
-	use qt4 || rm -r "${D}$(python_get_sitedir)/FusionIcon/interface_qt" || die
+	if use gtk; then
+            rm -r "${D}$(python_get_sitedir)/FusionIcon/interface_qt" || die
+        else
+            rm -r "${D}$(python_get_sitedir)/FusionIcon/interface_gtk" || die
+        fi
 }
 
 pkg_postinst() {
