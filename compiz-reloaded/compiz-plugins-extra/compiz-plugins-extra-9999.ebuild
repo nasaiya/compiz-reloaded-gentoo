@@ -37,7 +37,7 @@ DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare() {
         ## patches don't work in compiz-reloaded
-	##epatch "${FILESDIR}/${P}-libnotify.patch"
+	epatch "${FILESDIR}/${P}-libnotify.patch"
 
 	eautoreconf
 }
@@ -46,7 +46,7 @@ src_configure() {
 	econf \
 		--enable-fast-install \
 		--disable-static \
-		$(use_with libnotify notifications)
+		$(use_enable libnotify notifications)
 }
 
 src_install() {
