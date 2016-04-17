@@ -11,7 +11,6 @@ MINIMUM_COMPIZ_RELEASE=0.6.0
 
 DESCRIPTION="Compiz Fusion Tray Icon and Manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="mirror://gentoo/${P}.tar.gz"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/fusion-icon.git"
 
 LICENSE="GPL-2"
