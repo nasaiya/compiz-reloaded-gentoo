@@ -6,18 +6,18 @@ EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 DISTUTILS_IN_SOURCE_BUILD=1
-inherit distutils-r1
+inherit distutils-r1 
 
 DESCRIPTION="Compizconfig Settings Manager"
 HOMEPAGE="http://www.compiz.org/"
-SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
+SRC_URI="https://github.com/compiz-reloaded/ccsm/releases/download/v${PV}/ccsm-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 
 RDEPEND="
-	>=dev-python/compizconfig-python-${PV}[${PYTHON_USEDEP}]
+	>=compiz-reloaded/compizconfig-python-0.8.12.1[${PYTHON_USEDEP}]
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
 	gnome-base/librsvg
 "
@@ -49,3 +49,11 @@ python_configure_all() {
 	#set prefix
 	mydistutilsargs=( build --prefix=/usr )
 }
+
+pkg_postinst() {
+    elog "Do NOT report bugs about this package!"
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
+    elog "self-destruct at any moment... :)"
+}
+

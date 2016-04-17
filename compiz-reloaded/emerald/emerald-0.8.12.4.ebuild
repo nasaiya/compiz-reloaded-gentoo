@@ -2,27 +2,25 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI="5"
 
-inherit eutils flag-o-matic
-
-THEMES_RELEASE=0.5.2
+inherit eutils autotools flag-o-matic
 
 DESCRIPTION="Emerald Window Decorator"
 HOMEPAGE="http://www.compiz.org/"
-SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
+SRC_URI="https://github.com/compiz-reloaded/emerald/releases/download/v${PV}/emerald-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE=""
 
-PDEPEND="~x11-themes/emerald-themes-${THEMES_RELEASE}"
+PDEPEND=">=compiz-reloaded/emerald-themes-0.8.12"
 
 RDEPEND="
 	>=x11-libs/gtk+-2.8.0:2
-	>=x11-libs/libwnck-2.14.2:1
-	>=x11-wm/compiz-${PV}
+	x11-libs/libwnck:3
+	>=compiz-reloaded/compiz-0.8.12
 "
 
 DEPEND="${RDEPEND}
@@ -31,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.15
 "
 
-DOCS=( AUTHORS ChangeLog INSTALL NEWS README TODO )
+DOCS=( AUTHORS INSTALL NEWS TODO )
 
 src_prepare() {
 	# Fix pkg-config file pollution wrt #380197
@@ -43,6 +41,8 @@ src_prepare() {
 	append-libs -ldl -lm
 
 	epatch_user
+	
+	eautoreconf
 }
 
 src_configure() {
@@ -56,3 +56,11 @@ src_install() {
 	default
 	prune_libtool_files
 }
+
+pkg_postinst() {
+    elog "Do NOT report bugs about this package!"
+    elog "This is a homebrewed ebuild and is not" 
+    elog "maintained by anyone. In fact, it might" 
+    elog "self-destruct at any moment... :)"
+}
+

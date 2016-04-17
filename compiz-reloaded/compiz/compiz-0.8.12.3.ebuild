@@ -4,16 +4,16 @@
 
 EAPI=5
 
-inherit autotools eutils gnome2-utils
+inherit autotools eutils
 
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="http://www.compiz.org/"
-SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
+SRC_URI="https://github.com/compiz-reloaded/compiz/releases/download/v0.8.12.3/compiz-0.8.12.3.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gnome gconf gtk kde +svg"
+IUSE="+cairo dbus fuse gtk +svg inotify"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -34,27 +34,21 @@ COMMONDEPEND="
 	>=x11-libs/startup-notification-0.7
 	virtual/glu
 	cairo? (
-		x11-libs/cairo[X]
+		>=x11-libs/cairo-1.4[X]
 	)
 	dbus? (
 		>=sys-apps/dbus-1.0
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
-	gnome? (
-		>=gnome-base/gnome-control-center-2.16.1:2
-		gnome-base/gnome-desktop:2
-		gconf? ( gnome-base/gconf:2 )
-	)
 	gtk? (
 		>=x11-libs/gtk+-2.8.0:2
 		>=x11-libs/libwnck-2.18.3:1
 		x11-libs/pango
 	)
-	kde? ( >=kde-base/kwin-4.2.0 )
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
-		>=x11-libs/cairo-1.0
+		>=x11-libs/cairo-1.4
 	)
 "
 
@@ -71,56 +65,30 @@ RDEPEND="${COMMONDEPEND}
 	x11-apps/xvinfo
 "
 
-DOCS=( AUTHORS ChangeLog NEWS README TODO )
+DOCS=( AUTHORS ChangeLog NEWS TODO )
 
 src_prepare() {
 	echo gtk/gnome/compiz-wm.desktop.in >> po/POTFILES.skip
 	echo metadata/core.xml.in >> po/POTFILES.skip
 
+	## gcc 4.7 patch failed on compiz-reloaded... hopefully we don't need it
 	# Patch for compatibility with gcc 4.7
-	epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
+	##epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
 
-	if ! use gnome || ! use gconf; then
-		epatch "${FILESDIR}"/${PN}-no-gconf.patch
-	fi
-	if use kde; then
-		# patch for KDE 4.8 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.8" && epatch "${FILESDIR}"/${PN}-kde-4.8.patch
-		# patch for KDE 4.9 compatibility. Picked up from http://cgit.compiz.org
-		has_version ">=kde-base/kwin-4.9" && epatch "${FILESDIR}"/${PN}-kde-4.9.patch
-		# patch for KDE 4.10 compatibility. Picked up from stuff overlay
-		has_version ">=kde-base/kwin-4.10" && epatch "${FILESDIR}"/${PN}-kde-4.10.patch
-	fi
 	eautoreconf
 }
 
 src_configure() {
-	local myconf
-
-	# We make gconf optional by itself, but only if gnome is also
-	# enabled, otherwise we simply disable it.
-	if use gnome; then
-		myconf="${myconf} $(use_enable gconf)"
-	else
-		myconf="${myconf} --disable-gconf"
-	fi
-
 	econf \
 		--enable-fast-install \
 		--disable-static \
-		--disable-gnome-keybindings \
-		--with-default-plugins \
 		$(use_enable svg librsvg) \
 		$(use_enable cairo annotate) \
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gnome) \
-		$(use_enable gnome metacity) \
 		$(use_enable gtk) \
-		$(use_enable kde kde4) \
-		--disable-kde \
-		${myconf}
+		$(use_enable inotify)
 }
 
 src_install() {
@@ -152,17 +120,9 @@ src_install() {
 	domenu "${FILESDIR}"/compiz.desktop
 }
 
-pkg_preinst() {
-	use gnome && use gconf && gnome2_gconf_savelist
-}
-
 pkg_postinst() {
-	use gnome && use gconf && gnome2_gconf_install
-
-	ewarn "If you update to x11-wm/metacity-2.24 after you install ${P},"
-	ewarn "gtk-window-decorator will crash until you reinstall ${PN} again."
-}
-
-pkg_prerm() {
-	use gnome && gnome2_gconf_uninstall
+    elog "Do NOT report bugs about this package!"
+    elog "This is a homebrewed ebuild and is not" 
+    elog "maintained by anyone. In fact, it might" 
+    elog "self-destruct at any moment... :)"
 }

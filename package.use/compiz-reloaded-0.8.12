@@ -1,0 +1,7 @@
+# This should be the default unless you have these flags set/unset somewhere else like make.conf
+compiz-reloaded/compiz-reloaded-meta extras experimental fusionicon -simple
+
+# These are the ones I use, adjust as you prefer (gtk flag is the gtk-window-decorator)
+compiz-reloaded/compiz -gtk inotify
+compiz-reloaded/fusion-icon -gtk qt5
+compiz-reloaded/compiz-plugins-extra libnotify

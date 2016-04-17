@@ -10,7 +10,7 @@ inherit distutils-r1 gnome2-utils
 
 DESCRIPTION="Simplified Compizconfig Settings Manager"
 HOMEPAGE="http://www.compiz.org/"
-SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
+SRC_URI="https://github.com/compiz-reloaded/simple-ccsm/releases/download/v${PV}/simple-ccsm-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,9 +20,9 @@ DEPEND="
 	dev-util/intltool
 	virtual/pkgconfig"
 RDEPEND="
-	>=dev-python/compizconfig-python-${PV}[${PYTHON_USEDEP}]
+	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
 	>=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}]
-	>=x11-misc/ccsm-${PV}[${PYTHON_USEDEP}]
+	>=compiz-reloaded/ccsm-0.8.12[${PYTHON_USEDEP}]
 "
 
 python_prepare_all() {
@@ -47,6 +47,11 @@ pkg_preinst() {
 
 pkg_postinst() {
 	gnome2_icon_cache_update
+
+    elog "Do NOT report bugs about this package!"
+    elog "This is a homebrewed ebuild and is not" 
+    elog "maintained by anyone. In fact, it might" 
+    elog "self-destruct at any moment... :)"
 }
 
 pkg_postrm() {
