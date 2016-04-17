@@ -12,7 +12,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-manager.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="-*"
 RDEPEND=""
 
 src_install() {

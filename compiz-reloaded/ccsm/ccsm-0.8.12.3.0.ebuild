@@ -14,7 +14,7 @@ SRC_URI="https://github.com/compiz-reloaded/ccsm/releases/download/v${PV}/ccsm-$
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="-*"
 IUSE="+gtk3 gtk2"
 REQUIRED_USE="^^ ( gtk2 gtk3 )"
 

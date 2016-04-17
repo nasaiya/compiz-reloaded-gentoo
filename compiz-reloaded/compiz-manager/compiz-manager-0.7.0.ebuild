@@ -10,7 +10,7 @@ SRC_URI="https://github.com/compiz-reloaded/compiz-manager/releases/download/v${
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="-*"
 RDEPEND=""
 
 src_install() {

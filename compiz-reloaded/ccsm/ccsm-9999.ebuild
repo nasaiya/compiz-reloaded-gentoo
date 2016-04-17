@@ -14,7 +14,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/ccsm.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="-*"
 
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${PV}[${PYTHON_USEDEP}]

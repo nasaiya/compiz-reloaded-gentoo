@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/fusion-icon.git"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="-*"
 IUSE="gtk qt4 qt5"
 
 REQUIRED_USE="gtk? ( !qt4 !qt5 ) qt4? ( !qt5 )"

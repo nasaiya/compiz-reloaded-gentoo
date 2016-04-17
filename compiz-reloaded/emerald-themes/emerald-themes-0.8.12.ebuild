@@ -12,7 +12,7 @@ SRC_URI="https://github.com/compiz-reloaded/emerald-themes/releases/download/v${
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="-*"
 IUSE=""
 DEPEND=">=compiz-reloaded/emerald-0.8.12"
 

@@ -13,7 +13,7 @@ SRC_URI="https://github.com/compiz-reloaded/fusion-icon/releases/download/v${PV}
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="-*"
 IUSE="gtk2 +gtk3 qt4 +qt5"
 
 REQUIRED_USE="|| ( gtk2 gtk3 qt4 qt5 ) gtk2? ( !gtk3 ) qt4? ( !qt5 )"

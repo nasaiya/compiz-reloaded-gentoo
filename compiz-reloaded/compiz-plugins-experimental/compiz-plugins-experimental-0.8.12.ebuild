@@ -12,7 +12,7 @@ SRC_URI="https://github.com/compiz-reloaded/compiz-plugins-experimental/releases
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="-*"
 IUSE=""
 
 RDEPEND="
