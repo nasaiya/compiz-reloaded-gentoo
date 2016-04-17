@@ -34,7 +34,6 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare() {
-        ## patches don't work in compiz-reloaded
 	epatch "${FILESDIR}/${P}-libnotify.patch"
 
 	eautoreconf

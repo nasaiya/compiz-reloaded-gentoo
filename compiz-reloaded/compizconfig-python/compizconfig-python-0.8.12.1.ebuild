@@ -18,7 +18,7 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 RDEPEND="${PYTHON_DEPS}
 	>=dev-libs/glib-2.6
 	dev-python/cython
-	>=compiz-reloaded/libcompizconfig-0.8.12.1"
+	>=compiz-reloaded/libcompizconfig-0.8.12"
 
 DEPEND="${RDEPEND}
 	dev-python/pyrex[${PYTHON_USEDEP}]

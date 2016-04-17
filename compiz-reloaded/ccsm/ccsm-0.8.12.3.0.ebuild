@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 
 RDEPEND="
-	>=compiz-reloaded/compizconfig-python-0.8.12.1[${PYTHON_USEDEP}]
+	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
 	gnome-base/librsvg
 "

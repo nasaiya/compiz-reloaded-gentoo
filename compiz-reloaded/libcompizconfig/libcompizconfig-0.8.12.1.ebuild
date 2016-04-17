@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 
 RDEPEND="dev-libs/libxml2
 	dev-libs/protobuf
-	>=compiz-reloaded/compiz-${PV}
+	>=compiz-reloaded/compiz-0.8.12
 	x11-libs/libX11"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.41
