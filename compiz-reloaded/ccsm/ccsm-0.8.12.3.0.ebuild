@@ -15,6 +15,8 @@ SRC_URI="https://github.com/compiz-reloaded/ccsm/releases/download/v${PV}/ccsm-$
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+IUSE="+gtk3 gtk2"
+REQUIRED_USE="^^ ( gtk2 gtk3 )"
 
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
@@ -46,11 +48,19 @@ python_prepare_all() {
 }
 
 python_configure_all() {
-	#set prefix
-	mydistutilsargs=( build --prefix=/usr )
+	local myconf=""
+	use gtk2 && myconf+=" --with-gtk=2.0"
+	use gtk3 && myconf+=" --with-gtk=3.0"
+	
+	mydistutilsargs=( build \
+            --prefix=/usr \
+            ${myconf}
+        )
 }
 
 pkg_postinst() {
+    gtk-update-icon-cache
+    
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not"
     elog "maintained by anyone. In fact, it might"

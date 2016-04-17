@@ -13,14 +13,22 @@ SRC_URI="https://github.com/compiz-reloaded/emerald/releases/download/v${PV}/eme
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE=""
+IUSE="+gtk3 gtk2"
+REQUIRED_USE="^^ ( gtk2 gtk3 )"
 
 PDEPEND=">=compiz-reloaded/emerald-themes-0.8.12"
 
 RDEPEND="
-	>=x11-libs/gtk+-2.8.0:2
-	x11-libs/libwnck:3
-	>=compiz-reloaded/compiz-0.8.12
+	gtk2? ( 
+            >=x11-libs/gtk+-2.8.0:2 
+            >=compiz-reloaded/compiz-0.8.12[gtk2]
+            >=x11-libs/libwnck-2.22:1
+        )
+	gtk3? ( 
+            x11-libs/gtk+:3 
+            >=compiz-reloaded/compiz-0.8.12[gtk3]
+            x11-libs/libwnck:3
+        )
 "
 
 DEPEND="${RDEPEND}
@@ -46,10 +54,15 @@ src_prepare() {
 }
 
 src_configure() {
+        local myconf=""
+	use gtk2 && myconf+=" --with-gtk=2.0"
+	use gtk3 && myconf+=" --with-gtk=3.0"
+	
 	econf \
 		--disable-static \
 		--enable-fast-install \
-		--disable-mime-update
+		--disable-mime-update \
+		${myconf}
 }
 
 src_install() {

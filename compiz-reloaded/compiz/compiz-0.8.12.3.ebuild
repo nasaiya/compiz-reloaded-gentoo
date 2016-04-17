@@ -13,7 +13,8 @@ SRC_URI="https://github.com/compiz-reloaded/compiz/releases/download/v0.8.12.3/c
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="+cairo dbus fuse gtk +svg inotify"
+IUSE="+cairo dbus fuse gtk2 +gtk3 +svg inotify marco mate gsettings compizconfig"
+REQUIRED_USE="gtk2? ( !gtk3 ) marco? ( ^^ ( gtk2 gtk3 ) ) mate? ( ^^ ( gtk2 gtk3 ) ) gsettings? ( ^^ ( gtk2 gtk3 ) )"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -41,15 +42,29 @@ COMMONDEPEND="
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
-	gtk? (
+	gtk2? (
 		>=x11-libs/gtk+-2.8.0:2
 		>=x11-libs/libwnck-2.18.3:1
+		x11-libs/pango
+	)
+	gtk3? (
+		x11-libs/gtk+:3
+		x11-libs/libwnck:3
 		x11-libs/pango
 	)
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
 		>=x11-libs/cairo-1.4
 	)
+	marco? (
+                x11-wm/marco
+        )
+        gsettings? (
+                >=dev-libs/glib-2.32
+        )
+        compizconfig? (
+                >=compiz-reloaded/libcompizconfig-0.8.12
+        )
 "
 
 DEPEND="${COMMONDEPEND}
@@ -79,6 +94,17 @@ src_prepare() {
 }
 
 src_configure() {
+        local myconf=""
+        if ( use gtk2 ); then
+            myconf+=" --enable-gtk"
+            myconf+=" --with-gtk=2.0"
+        elif ( use gtk3 ); then
+            myconf+=" --enable-gtk"
+            myconf+=" --with-gtk=3.0"
+        else
+            myconf+=" --disable-gtk"
+        fi
+        
 	econf \
 		--enable-fast-install \
 		--disable-static \
@@ -87,8 +113,12 @@ src_configure() {
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gtk) \
-		$(use_enable inotify)
+		$(use_enable inotify) \
+		$(use_enable marco) \
+		$(use_enable mate) \
+		$(use_enable gsettings) \
+		$(use_enable compizconfig) \
+		${myconf}
 }
 
 src_install() {
