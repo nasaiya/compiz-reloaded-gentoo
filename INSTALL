@@ -1,9 +1,18 @@
 Put the compiz-reloaded folder in your local overlay.
 
-You might need to 
+You might need to do this if portage complains:
 # echo "compiz-reloaded" >> /etc/portage/categories
 
-Put the keywords and use files in your /etc/portage/package.use/ and /etc/portage/package.keywords/
+Put the keywords file for the version you want to install in your /etc/portage/package.keywords/
+
+Have a look at the pakcage.use files in case you want to use them as well.
+
+Remove all previously installed compiz related stuff -- These ebuild don't yet do any blocking of other packages 
+so you wil get package collisions and frightening unstable computer-frying results if you don't... well either 
+that or portage just won't merge it...
+
+And finally...
 
 # emerge -av compiz-reloaded/compiz-reloaded-meta
+
 
