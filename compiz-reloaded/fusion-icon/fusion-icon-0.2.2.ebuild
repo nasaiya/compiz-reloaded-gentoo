@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1 eutils gnome2-utils
 MINIMUM_COMPIZ_RELEASE="0.8.12"
 DESCRIPTION="Compiz Fusion Tray Icon and Manager"
-HOMEPAGE="http://compiz.org"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/fusion-icon/releases/download/v${PV}/fusion-icon-${PV}.tar.xz"
 
 LICENSE="GPL-2"

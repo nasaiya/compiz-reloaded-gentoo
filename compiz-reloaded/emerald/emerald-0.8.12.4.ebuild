@@ -7,7 +7,7 @@ EAPI="5"
 inherit eutils autotools flag-o-matic
 
 DESCRIPTION="Emerald Window Decorator"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/emerald/releases/download/v${PV}/emerald-${PV}.tar.xz"
 
 LICENSE="GPL-2"

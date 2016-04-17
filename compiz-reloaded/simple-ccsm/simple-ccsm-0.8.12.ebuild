@@ -9,7 +9,7 @@ DISTUTILS_IN_SOURCE_BUILD=1
 inherit distutils-r1 gnome2-utils
 
 DESCRIPTION="Simplified Compizconfig Settings Manager"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/simple-ccsm/releases/download/v${PV}/simple-ccsm-${PV}.tar.xz"
 
 LICENSE="GPL-2"

@@ -9,7 +9,7 @@ DISTUTILS_IN_SOURCE_BUILD=1
 inherit distutils-r1 gnome2-utils git-r3
 
 DESCRIPTION="Simplified Compizconfig Settings Manager"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 ##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/simple-ccsm.git"
 

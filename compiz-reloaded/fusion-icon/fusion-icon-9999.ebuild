@@ -10,7 +10,7 @@ inherit distutils-r1 eutils gnome2-utils git-r3
 MINIMUM_COMPIZ_RELEASE=0.6.0
 
 DESCRIPTION="Compiz Fusion Tray Icon and Manager"
-HOMEPAGE="http://compiz.org"
+HOMEPAGE="https://github.com/compiz-reloaded"
 ##SRC_URI="mirror://gentoo/${P}.tar.gz"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/fusion-icon.git"
 

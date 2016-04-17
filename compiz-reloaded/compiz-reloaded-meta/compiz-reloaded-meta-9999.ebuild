@@ -3,7 +3,7 @@
 # $Header: $
 
 DESCRIPTION="Compiz Reloaded (meta)"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI=""
 
 LICENSE="GPL-2"

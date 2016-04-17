@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <maintainer type="project">
-	<email>desktop-effects@gentoo.org</email>
-	<name>Desktop effects</name>
+	<email>noone@nowhere.com</email>
+	<name>Un-maintained</name>
 </maintainer>
 <longdescription lang="en">Python bindings for libcompizconfig.</longdescription>
 </pkgmetadata>

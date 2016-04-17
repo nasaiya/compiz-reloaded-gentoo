@@ -7,7 +7,7 @@ EAPI="4"
 inherit autotools eutils git-r3
 
 DESCRIPTION="Compiz Fusion Window Decorator Extra Plugins"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 ##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-plugins-extra.git"
 

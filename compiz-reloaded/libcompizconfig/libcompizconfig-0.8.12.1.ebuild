@@ -6,7 +6,7 @@ EAPI=4
 inherit eutils autotools
 
 DESCRIPTION="Compiz Configuration System"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/libcompizconfig/releases/download/v0.8.12.1/libcompizconfig-0.8.12.1.tar.xz"
 
 LICENSE="GPL-2"

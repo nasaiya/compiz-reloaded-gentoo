@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit eutils autotools python-r1
 
 DESCRIPTION="Compizconfig Python Bindings"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/compizconfig-python/releases/download/v0.8.12.1/compizconfig-python-0.8.12.1.tar.xz"
 
 LICENSE="GPL-2"

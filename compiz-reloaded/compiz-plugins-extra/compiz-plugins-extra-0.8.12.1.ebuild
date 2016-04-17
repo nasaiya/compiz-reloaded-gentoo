@@ -7,7 +7,7 @@ EAPI="4"
 inherit autotools eutils
 
 DESCRIPTION="Compiz Fusion Window Decorator Extra Plugins"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/compiz-plugins-extra/releases/download/v${PV}/compiz-plugins-extra-${PV}.tar.xz"
 
 LICENSE="GPL-2"

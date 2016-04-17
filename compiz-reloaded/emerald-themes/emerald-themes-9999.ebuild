@@ -7,7 +7,7 @@ EAPI="4"
 inherit git-r3 autotools
 
 DESCRIPTION="Emerald window decorator themes"
-HOMEPAGE="http://compiz.org"
+HOMEPAGE="https://github.com/compiz-reloaded"
 ##SRC_URI="http://cgit.compiz.org/fusion/decorators/${PV}/snapshot/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/emerald-themes.git"
 

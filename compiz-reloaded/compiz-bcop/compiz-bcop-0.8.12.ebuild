@@ -7,7 +7,7 @@ EAPI=4
 inherit autotools
 
 DESCRIPTION="Compiz Option code Generator"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/compiz-bcop/releases/download/v${PV}/compiz-bcop-${PV}.tar.xz"
 
 LICENSE="GPL-2"

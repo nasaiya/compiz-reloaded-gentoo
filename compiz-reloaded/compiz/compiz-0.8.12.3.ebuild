@@ -7,7 +7,7 @@ EAPI=5
 inherit autotools eutils
 
 DESCRIPTION="OpenGL window and compositing manager"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/compiz/releases/download/v0.8.12.3/compiz-0.8.12.3.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1 MIT"

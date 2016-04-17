@@ -7,7 +7,7 @@ EAPI="4"
 inherit autotools
 
 DESCRIPTION="Compiz Fusion Window Decorator Experimental Plugins"
-HOMEPAGE="http://www.compiz.org/"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/compiz-plugins-experimental/releases/download/v${PV}/compiz-plugins-experimental-${PV}.tar.xz"
 
 LICENSE="GPL-2"

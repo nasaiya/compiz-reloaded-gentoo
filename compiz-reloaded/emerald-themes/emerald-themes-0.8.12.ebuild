@@ -7,7 +7,7 @@ EAPI="4"
 inherit autotools
 
 DESCRIPTION="Emerald window decorator themes"
-HOMEPAGE="http://compiz.org"
+HOMEPAGE="https://github.com/compiz-reloaded"
 SRC_URI="https://github.com/compiz-reloaded/emerald-themes/releases/download/v${PV}/emerald-themes-${PV}.tar.xz"
 
 LICENSE="GPL-2"
