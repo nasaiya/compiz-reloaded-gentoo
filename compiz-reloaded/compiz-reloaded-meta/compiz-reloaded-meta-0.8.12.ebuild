@@ -11,7 +11,7 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="+gtk3 gtk2 +experimental +extra +emerald +ccsm simpleccsm +fusionicon"
+IUSE="+gtk3 gtk2 +experimental +extra +emerald +ccsm simpleccsm +fusionicon manager"
 REQUIRED_USE="^^ ( gtk2 gtk3 )"
 RDEPEND="
 	gtk2? ( >=compiz-reloaded/compiz-${PV}[gtk2] )
@@ -32,6 +32,7 @@ RDEPEND="
             gtk2? ( >=compiz-reloaded/fusion-icon-0.2.2[gtk2] )
             gtk3? ( >=compiz-reloaded/fusion-icon-0.2.2[gtk3] )
         )
+        manager? ( >=compiz-reloaded/compiz-manager-0.7.0 )
 "
 
 

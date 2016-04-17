@@ -1,12 +1,11 @@
-# This should be the default unless you have these flags set/unset somewhere else like make.conf
-compiz-reloaded/compiz-reloaded-meta gtk3 -gtk2 experimental extra emerald ccsm -simpleccsm fusionicon
+# This is the default unless you have these flags set/unset somewhere else like make.conf
+#compiz-reloaded/compiz-reloaded-meta gtk3 -gtk2 experimental extra emerald ccsm -simpleccsm -manager fusionicon
 
 # If you enable gtk2 above you'll need the following as well
 #compiz-reloaded/compiz gtk2 -gtk3
 #compiz-reloaded/ccsm gtk2 -gtk3
 #compiz-reloaded/fusion-icon gtk2 -gtk3
 #compiz-reloaded/emerald gtk2 -gtk3
-
 
 # These are the ones I use, adjust as you prefer
 compiz-reloaded/compiz inotify
