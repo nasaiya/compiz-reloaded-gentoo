@@ -8,7 +8,6 @@ inherit git-r3 autotools
 
 DESCRIPTION="Compiz Fusion Window Decorator Experimental Plugins"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-plugins-experimental.git"
 
 LICENSE="GPL-2"
@@ -30,8 +29,6 @@ DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.15
 	x11-libs/cairo
 "
-
-#RESTRICT="mirror"
 
 DOCS="AUTHORS INSTALL NEWS"
 

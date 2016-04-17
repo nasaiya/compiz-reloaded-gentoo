@@ -8,7 +8,6 @@ inherit autotools eutils git-r3
 
 DESCRIPTION="Compiz Fusion Window Decorator Extra Plugins"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-plugins-extra.git"
 
 
@@ -36,7 +35,6 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare() {
-        ## patches don't work in compiz-reloaded
 	epatch "${FILESDIR}/${P}-libnotify.patch"
 
 	eautoreconf

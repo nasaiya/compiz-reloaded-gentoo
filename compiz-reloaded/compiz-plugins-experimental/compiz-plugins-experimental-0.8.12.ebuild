@@ -30,8 +30,6 @@ DEPEND="${RDEPEND}
 	x11-libs/cairo
 "
 
-#RESTRICT="mirror"
-
 DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare(){

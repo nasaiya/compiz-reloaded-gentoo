@@ -8,7 +8,6 @@ inherit autotools eutils gnome2-utils git-r3
 
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 
 LICENSE="GPL-2 LGPL-2.1 MIT"
@@ -96,33 +95,34 @@ src_install() {
 	default
 	prune_libtool_files --all
 
-	# Install compiz-manager
-	dobin "${FILESDIR}"/compiz-manager
-
-	# Add the full-path to lspci
-	sed -i "s#lspci#/usr/sbin/lspci#" "${D}/usr/bin/compiz-manager" || die
-
-	# Fix the hardcoded lib paths
-	sed -i "s#/lib/#/$(get_libdir)/#g" "${D}/usr/bin/compiz-manager" || die
-
-	# Create gentoo's config file
-	dodir /etc/xdg/compiz
-
-	cat <<- EOF > "${D}/etc/xdg/compiz/compiz-manager"
-	COMPIZ_BIN_PATH="/usr/bin/"
-	PLUGIN_PATH="/usr/$(get_libdir)/compiz/"
-	LIBGL_NVIDIA="/usr/$(get_libdir)/opengl/xorg-x11/lib/libGL.so.1.2"
-	LIBGL_FGLRX="/usr/$(get_libdir)/opengl/xorg-x11/lib/libGL.so.1.2"
-	KWIN="$(type -p kwin)"
-	METACITY="$(type -p metacity)"
-	SKIP_CHECKS="yes"
-	EOF
+## This is outdated and should be either updated, and made optional with a use flag or removed.
+#
+#	# Install compiz-manager
+#	dobin "${FILESDIR}"/compiz-manager
+#
+#	# Add the full-path to lspci
+#	sed -i "s#lspci#/usr/sbin/lspci#" "${D}/usr/bin/compiz-manager" || die
+#
+#	# Fix the hardcoded lib paths
+#	sed -i "s#/lib/#/$(get_libdir)/#g" "${D}/usr/bin/compiz-manager" || die
+#
+#	# Create gentoo's config file
+#	dodir /etc/xdg/compiz
+#
+#	cat <<- EOF > "${D}/etc/xdg/compiz/compiz-manager"
+#	COMPIZ_BIN_PATH="/usr/bin/"
+#	PLUGIN_PATH="/usr/$(get_libdir)/compiz/"
+#	LIBGL_NVIDIA="/usr/$(get_libdir)/opengl/xorg-x11/lib/libGL.so.1.2"
+#	LIBGL_FGLRX="/usr/$(get_libdir)/opengl/xorg-x11/lib/libGL.so.1.2"
+#	KWIN="$(type -p kwin)"
+#	METACITY="$(type -p metacity)"
+#	SKIP_CHECKS="yes"
+#	EOF
 
 	domenu "${FILESDIR}"/compiz.desktop
 }
 
 pkg_postinst() {
-    elog ""
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not" 
     elog "maintained by anyone. In fact, it might" 

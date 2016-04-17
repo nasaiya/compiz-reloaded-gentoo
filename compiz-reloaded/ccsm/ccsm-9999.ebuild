@@ -10,7 +10,6 @@ inherit distutils-r1 git-r3
 
 DESCRIPTION="Compizconfig Settings Manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/ccsm.git"
 
 LICENSE="GPL-2"

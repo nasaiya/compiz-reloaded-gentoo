@@ -8,7 +8,6 @@ inherit eutils autotools flag-o-matic git-r3
 
 DESCRIPTION="Emerald Window Decorator"
 HOMEPAGE="https://github.com/compiz-reloaded"
-##SRC_URI="http://releases.compiz.org/${PV}/${P}.tar.bz2"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/emerald.git"
 
 LICENSE="GPL-2"
