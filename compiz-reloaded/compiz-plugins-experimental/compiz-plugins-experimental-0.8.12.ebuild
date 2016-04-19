@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI="5"
 
-inherit autotools
+inherit autotools eutils
 
 DESCRIPTION="Compiz Fusion Window Decorator Experimental Plugins"
 HOMEPAGE="https://github.com/compiz-reloaded"
@@ -31,10 +31,6 @@ DEPEND="${RDEPEND}
 "
 
 DOCS="AUTHORS INSTALL NEWS"
-
-src_prepare(){
-    eautoreconf
-}
 
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
