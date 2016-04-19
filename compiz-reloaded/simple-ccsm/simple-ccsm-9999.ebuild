@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -49,8 +49,8 @@ pkg_postinst() {
 	gnome2_icon_cache_update
 
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
 

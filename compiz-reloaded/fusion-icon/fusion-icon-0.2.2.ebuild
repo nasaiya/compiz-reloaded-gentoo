@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -22,22 +22,19 @@ RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${MINIMUM_COMPIZ_RELEASE}
 	>=compiz-reloaded/compiz-${MINIMUM_COMPIZ_RELEASE}
 	x11-apps/xvinfo
-	gtk2? ( 
-            >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}] 
-            dev-libs/libappindicator 
+	gtk2? (
+            >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}]
+            dev-libs/libappindicator
         )
-        gtk3? ( 
-            >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}] 
-            dev-libs/libappindicator 
+        gtk3? (
+            >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}]
+            dev-libs/libappindicator
         )
 	qt4? ( dev-python/PyQt4[X,${PYTHON_USEDEP}] )
 	qt5? ( dev-python/PyQt5[${PYTHON_USEDEP}] )
 "
 
 DEPEND="${RDEPEND}"
-
-## no idea why this was here or what it does
-##S="${WORKDIR}/${PN}"
 
 src_prepare(){
     if use qt4; then
@@ -55,7 +52,7 @@ python_configure_all() {
 	use gtk3 && myconf+=" --with-gtk=3.0"
         use qt4 && myconf+=" --with-qt=4"
         use qt5 && myconf+=" --with-qt=5.0"
-        
+
 	mydistutilsargs=( build \
             ${myconf}
         )
@@ -75,8 +72,8 @@ pkg_postinst() {
 	use gtk3 && gtk-update-icon-cache
 
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 
 }

@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -34,14 +34,12 @@ DOCS=( AUTHORS INSTALL NEWS TODO )
 src_prepare() {
 	# Fix pkg-config file pollution wrt #380197
 	epatch "${FILESDIR}"/${P}-pkgconfig-pollution.patch
-	# fix build with gtk+-2.22 - bug 341143
-	sed -i -e '/#define G[DT]K_DISABLE_DEPRECATED/s:^://:' \
-		include/emerald.h || die
+	
 	# Fix underlinking
 	append-libs -ldl -lm
 
 	epatch_user
-	
+
 	eautoreconf
 }
 
@@ -59,8 +57,7 @@ src_install() {
 
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
-

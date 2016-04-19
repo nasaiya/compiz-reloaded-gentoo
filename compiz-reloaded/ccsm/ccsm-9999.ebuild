@@ -16,9 +16,13 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
 
+# FIXME : use gobject introspection instead of pygtk in the below code
+
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${PV}[${PYTHON_USEDEP}]
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
+	dev-python/pygobject
+	dev-python/pycairo
 	gnome-base/librsvg
 "
 
@@ -27,11 +31,6 @@ DOCS=( AUTHORS )
 python_prepare_all() {
 	# return error if wrong arguments passed to setup.py
 	sed -i -e 's/raise SystemExit/\0(1)/' setup.py || die 'sed on setup.py failed'
-	# fix desktop file
-	sed -i \
-		-e '/Categories/s/Compiz/X-\0/' \
-		-e '/Encoding/d' \
-		ccsm.desktop.in || die 'sed on ccsm.desktop.in failed'
 
 	# correct gettext behavior
 	if [[ -n "${LINGUAS+x}" ]] ; then
@@ -56,4 +55,3 @@ pkg_postinst() {
     elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
-
