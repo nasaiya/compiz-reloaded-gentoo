@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=4
+EAPI=5
 inherit eutils autotools
 
 DESCRIPTION="Compiz Configuration System"
 HOMEPAGE="https://github.com/compiz-reloaded"
-SRC_URI="https://github.com/compiz-reloaded/libcompizconfig/releases/download/v0.8.12.1/libcompizconfig-0.8.12.1.tar.xz"
+SRC_URI="https://github.com/compiz-reloaded/libcompizconfig/releases/download/v${PV}/libcompizconfig-${PV}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -41,8 +41,7 @@ src_install() {
 
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
-

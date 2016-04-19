@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -22,7 +22,6 @@ RDEPEND="${PYTHON_DEPS}
 	>=compiz-reloaded/libcompizconfig-${PV}"
 
 DEPEND="${RDEPEND}
-	dev-python/pyrex[${PYTHON_USEDEP}]
 	virtual/pkgconfig"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -31,7 +30,7 @@ src_prepare(){
     eautoreconf
 }
 
-##FIXME: Do we need this? Can this package even build for python 3? 
+##FIXME: Do we need this? Can this package even build for python 3?
 ##FIXME: Works fine for me without it and I don't speak python anyway...
 ##src_configure() {
 ##	local myeconfargs=(
@@ -52,8 +51,7 @@ src_prepare(){
 
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
-

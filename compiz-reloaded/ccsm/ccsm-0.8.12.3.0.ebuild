@@ -6,7 +6,7 @@ EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 DISTUTILS_IN_SOURCE_BUILD=1
-inherit distutils-r1 
+inherit distutils-r1
 
 DESCRIPTION="Compizconfig Settings Manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
@@ -20,7 +20,10 @@ REQUIRED_USE="^^ ( gtk2 gtk3 )"
 
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
+	# FIXME : use gobject introspection instead of pygtk
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
+	dev-python/pygobject
+	dev-python/pycairo
 	gnome-base/librsvg
 "
 
@@ -29,11 +32,6 @@ DOCS=( AUTHORS )
 python_prepare_all() {
 	# return error if wrong arguments passed to setup.py
 	sed -i -e 's/raise SystemExit/\0(1)/' setup.py || die 'sed on setup.py failed'
-	# fix desktop file
-	sed -i \
-		-e '/Categories/s/Compiz/X-\0/' \
-		-e '/Encoding/d' \
-		ccsm.desktop.in || die 'sed on ccsm.desktop.in failed'
 
 	# correct gettext behavior
 	if [[ -n "${LINGUAS+x}" ]] ; then
@@ -51,7 +49,7 @@ python_configure_all() {
 	local myconf=""
 	use gtk2 && myconf+=" --with-gtk=2.0"
 	use gtk3 && myconf+=" --with-gtk=3.0"
-	
+
 	mydistutilsargs=( build \
             --prefix=/usr \
             ${myconf}
@@ -60,10 +58,9 @@ python_configure_all() {
 
 pkg_postinst() {
     gtk-update-icon-cache
-    
+
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not"
     elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
-

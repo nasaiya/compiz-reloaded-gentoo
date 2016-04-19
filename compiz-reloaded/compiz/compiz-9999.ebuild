@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -20,9 +20,9 @@ COMMONDEPEND="
 	dev-libs/libxml2
 	dev-libs/libxslt
 	media-libs/libpng:0=
-	>=media-libs/mesa-6.5.1-r1
-	>=x11-base/xorg-server-1.1.1-r1
-	>=x11-libs/libX11-1.4
+	>=media-libs/mesa-10.3.7-r1
+	>=x11-base/xorg-server-1.12.4-r5
+	>=x11-libs/libX11-1.6.2
 	x11-libs/libxcb
 	x11-libs/libXcomposite
 	x11-libs/libXdamage
@@ -30,11 +30,11 @@ COMMONDEPEND="
 	x11-libs/libXrandr
 	x11-libs/libICE
 	x11-libs/libSM
-	>=x11-libs/libXrender-0.8.4
-	>=x11-libs/startup-notification-0.7
+	>=x11-libs/libXrender-0.9.8
+	>=x11-libs/startup-notification-0.12
 	virtual/glu
 	cairo? (
-		>=x11-libs/cairo-1.4[X]
+		>=x11-libs/cairo-1.14.2[X]
 	)
 	dbus? (
 		>=sys-apps/dbus-1.0
@@ -71,10 +71,6 @@ src_prepare() {
 	echo gtk/gnome/compiz-wm.desktop.in >> po/POTFILES.skip
 	echo metadata/core.xml.in >> po/POTFILES.skip
 
-	## gcc 4.7 patch failed on compiz-reloaded... hopefully we don't need it
-	# Patch for compatibility with gcc 4.7
-	##epatch "${FILESDIR}"/${PN}-gcc-4.7.patch
-
 	eautoreconf
 }
 
@@ -94,13 +90,11 @@ src_configure() {
 src_install() {
 	default
 	prune_libtool_files --all
-
-	domenu "${FILESDIR}"/compiz.desktop
 }
 
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
-    elog "This is a homebrewed ebuild and is not" 
-    elog "maintained by anyone. In fact, it might" 
+    elog "This is a homebrewed ebuild and is not"
+    elog "maintained by anyone. In fact, it might"
     elog "self-destruct at any moment... :)"
 }
