@@ -7,14 +7,14 @@ EAPI=5
 inherit autotools eutils
 
 DESCRIPTION="OpenGL window and compositing manager"
-HOMEPAGE="https://github.com/compiz-reloaded"
+HOMEPAGE="https://github.com/compiz-reloaded/compiz"
 SRC_URI="https://github.com/compiz-reloaded/compiz/releases/download/v0.8.12.3/compiz-0.8.12.3.tar.xz"
 
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="-*"
-IUSE="+cairo dbus fuse gtk2 +gtk3 +svg inotify marco mate gsettings compizconfig"
-REQUIRED_USE="gtk2? ( !gtk3 ) marco? ( ^^ ( gtk2 gtk3 ) ) mate? ( ^^ ( gtk2 gtk3 ) ) gsettings? ( ^^ ( gtk2 gtk3 ) )"
+IUSE="gtk3 +cairo dbus fuse +svg inotify marco mate gsettings compizconfig"
+REQUIRED_USE="marco? ( gtk3 )"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -34,6 +34,16 @@ COMMONDEPEND="
 	>=x11-libs/libXrender-0.9.8
 	>=x11-libs/startup-notification-0.12
 	virtual/glu
+
+	x11-libs/pango
+	gtk3? (
+            x11-libs/gtk+:3
+            x11-libs/libwnck:3
+        )
+        !gtk3? (
+            >=x11-libs/gtk+-2.8.0:2
+            >=x11-libs/libwnck-2.18.3:1
+        )
 	cairo? (
 		>=x11-libs/cairo-1.14.2[X]
 	)
@@ -42,16 +52,6 @@ COMMONDEPEND="
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
-	gtk2? (
-		>=x11-libs/gtk+-2.8.0:2
-		>=x11-libs/libwnck-2.18.3:1
-		x11-libs/pango
-	)
-	gtk3? (
-		x11-libs/gtk+:3
-		x11-libs/libwnck:3
-		x11-libs/pango
-	)
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
 		>=x11-libs/cairo-1.4
@@ -77,7 +77,6 @@ RDEPEND="${COMMONDEPEND}
 	x11-apps/mesa-progs
 	x11-apps/xdpyinfo
 	x11-apps/xset
-	x11-apps/xvinfo
 "
 
 DOCS=( AUTHORS ChangeLog NEWS TODO )
@@ -90,17 +89,10 @@ src_prepare() {
 }
 
 src_configure() {
-        local myconf=""
-        if ( use gtk2 ); then
-            myconf+=" --enable-gtk"
-            myconf+=" --with-gtk=2.0"
-        elif ( use gtk3 ); then
-            myconf+=" --enable-gtk"
-            myconf+=" --with-gtk=3.0"
-        else
-            myconf+=" --disable-gtk"
-        fi
-
+        local myconf=" --enable-gtk"
+        use gtk3 && myconf+=" --with-gtk=3.0"
+        use gtk3 || myconf+=" --with-gtk=2.0"
+        
 	econf \
 		--enable-fast-install \
 		--disable-static \

@@ -11,17 +11,22 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
-IUSE="+experimental +extra +emerald simple +fusionicon"
-
+IUSE="gtk3 +experimental +extra +emerald +ccsm simpleccsm +fusionicon manager"
 RDEPEND="
-	>=compiz-reloaded/compiz-${PV}
-	emerald? ( >=compiz-reloaded/emerald-${PV} )
+	emerald? ( 
+            gtk3? ( >=compiz-reloaded/emerald-${PV}[gtk3] )
+        )
 	experimental? ( >=compiz-reloaded/compiz-plugins-experimental-${PV} )
 	>=compiz-reloaded/compiz-plugins-main-${PV}
 	extra? ( >=compiz-reloaded/compiz-plugins-extra-${PV} )
-	>=compiz-reloaded/ccsm-${PV}
-	simple? ( >=compiz-reloaded/simple-ccsm-${PV} )
-	fusionicon? ( >=compiz-reloaded/fusion-icon-0.2.2 )
+	ccsm? (
+            gtk3? ( >=compiz-reloaded/ccsm-${PV}[gtk3] )
+        )
+	simpleccsm? ( >=compiz-reloaded/simple-ccsm-${PV} )
+	fusionicon? ( 
+            gtk3? ( >=compiz-reloaded/fusion-icon-0.2.2[gtk3] )
+        )
+        manager? ( >=compiz-reloaded/compiz-manager-0.7.0 )
 "
 
 

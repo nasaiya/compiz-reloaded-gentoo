@@ -22,12 +22,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	x11-proto/xproto"
 
-RESTRICT="test"
-
-src_prepare() {
-    eautoreconf
-}
-
 src_configure() {
 	econf \
 		--enable-fast-install \
@@ -35,7 +29,9 @@ src_configure() {
 }
 
 src_install() {
+        # FIXME: Is this next line necessary?
 	emake DESTDIR="${D}" install
+
 	prune_libtool_files --all
 }
 

@@ -18,10 +18,6 @@ DEPEND=">=compiz-reloaded/emerald-0.8.12"
 
 DOCS="INSTALL NEWS"
 
-src_prepare(){
-    eautoreconf
-}
-
 pkg_postinst() {
     elog "Do NOT report bugs about this package!"
     elog "This is a homebrewed ebuild and is not"

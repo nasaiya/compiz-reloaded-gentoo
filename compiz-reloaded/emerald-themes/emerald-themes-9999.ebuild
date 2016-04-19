@@ -10,7 +10,6 @@ DESCRIPTION="Emerald window decorator themes"
 HOMEPAGE="https://github.com/compiz-reloaded"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/emerald-themes.git"
 
-
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
@@ -19,6 +18,7 @@ DEPEND=">=compiz-reloaded/emerald-${PV}"
 
 DOCS="INSTALL NEWS"
 
+# This *is* needed for the live ebuild!
 src_prepare(){
     eautoreconf
 }

@@ -13,7 +13,7 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz-manager.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
-RDEPEND=""
+RDEPEND="x11-apps/xvinfo"
 
 src_install() {
     dobin compiz-manager

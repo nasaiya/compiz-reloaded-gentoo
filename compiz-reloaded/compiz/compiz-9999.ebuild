@@ -13,7 +13,8 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/compiz.git"
 LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="-*"
-IUSE="+cairo dbus fuse gtk +svg inotify"
+IUSE="gtk3 +cairo dbus fuse +svg inotify marco mate gsettings compizconfig"
+REQUIRED_USE="marco? ( gtk3 )"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
@@ -33,6 +34,16 @@ COMMONDEPEND="
 	>=x11-libs/libXrender-0.9.8
 	>=x11-libs/startup-notification-0.12
 	virtual/glu
+
+	x11-libs/pango
+	gtk3? (
+            x11-libs/gtk+:3
+            x11-libs/libwnck:3
+        )
+        !gtk3? (
+            >=x11-libs/gtk+-2.8.0:2
+            >=x11-libs/libwnck-2.18.3:1
+        )
 	cairo? (
 		>=x11-libs/cairo-1.14.2[X]
 	)
@@ -41,15 +52,19 @@ COMMONDEPEND="
 		dev-libs/dbus-glib
 	)
 	fuse? ( sys-fs/fuse )
-	gtk? (
-		>=x11-libs/gtk+-2.8.0:2
-		>=x11-libs/libwnck-2.18.3:1
-		x11-libs/pango
-	)
 	svg? (
 		>=gnome-base/librsvg-2.14.0:2
 		>=x11-libs/cairo-1.4
 	)
+	marco? (
+                x11-wm/marco
+        )
+        gsettings? (
+                >=dev-libs/glib-2.32
+        )
+        compizconfig? (
+                >=compiz-reloaded/libcompizconfig-${PV}
+        )
 "
 
 DEPEND="${COMMONDEPEND}
@@ -62,7 +77,6 @@ RDEPEND="${COMMONDEPEND}
 	x11-apps/mesa-progs
 	x11-apps/xdpyinfo
 	x11-apps/xset
-	x11-apps/xvinfo
 "
 
 DOCS=( AUTHORS ChangeLog NEWS TODO )
@@ -75,6 +89,10 @@ src_prepare() {
 }
 
 src_configure() {
+        local myconf=" --enable-gtk"
+        use gtk3 && myconf+=" --with-gtk=3.0"
+        use gtk3 || myconf+=" --with-gtk=2.0"
+        
 	econf \
 		--enable-fast-install \
 		--disable-static \
@@ -83,8 +101,12 @@ src_configure() {
 		$(use_enable dbus) \
 		$(use_enable dbus dbus-glib) \
 		$(use_enable fuse) \
-		$(use_enable gtk) \
-		$(use_enable inotify)
+		$(use_enable inotify) \
+		$(use_enable marco) \
+		$(use_enable mate) \
+		$(use_enable gsettings) \
+		$(use_enable compizconfig) \
+		${myconf}
 }
 
 src_install() {

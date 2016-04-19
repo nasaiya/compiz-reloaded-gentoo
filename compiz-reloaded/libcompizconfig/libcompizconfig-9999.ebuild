@@ -12,7 +12,6 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/libcompizconfig.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
-IUSE=""
 
 RDEPEND="dev-libs/libxml2
 	dev-libs/protobuf
@@ -23,10 +22,9 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	x11-proto/xproto"
 
-RESTRICT="test"
-
+# This *is* necessary for live ebuild!
 src_prepare() {
-    eautoreconf
+   eautoreconf
 }
 
 src_configure() {
@@ -36,8 +34,9 @@ src_configure() {
 }
 
 src_install() {
+        # FIXME: Is this next line necessary?
 	emake DESTDIR="${D}" install
-	dodoc TODO
+
 	prune_libtool_files --all
 }
 

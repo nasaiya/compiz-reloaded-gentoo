@@ -36,7 +36,6 @@ DOCS="AUTHORS INSTALL NEWS"
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-libnotify.patch"
-
 	eautoreconf
 }
 

@@ -9,20 +9,24 @@ DISTUTILS_IN_SOURCE_BUILD=1
 inherit distutils-r1 git-r3
 
 DESCRIPTION="Compizconfig Settings Manager"
-HOMEPAGE="https://github.com/compiz-reloaded"
+HOMEPAGE="https://github.com/compiz-reloaded/ccsm"
 EGIT_REPO_URI="git://github.com/compiz-reloaded/ccsm.git"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
+IUSE="gtk3"
 
-# FIXME : use gobject introspection instead of pygtk in the below code
-
+# FIXME : (Myu): (regarding pygobject) Needed introspections for ccsm: GLib, Gtk, Gdk, GdkX11, GdkPixbuf, Pango, PangoCairo ( XRevan86 IRC ) 
+# FIXME : (nasaiya): does this mean we need additional deps?
+# FIXME : (nasaiya): is pycairo just for gtk3?
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${PV}[${PYTHON_USEDEP}]
-	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
-	dev-python/pygobject
-	dev-python/pycairo
+	!gtk3? ( >=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}] )
+	gtk3? ( 
+            dev-python/pygobject 
+            dev-python/pycairo 
+        )
 	gnome-base/librsvg
 "
 
@@ -45,8 +49,14 @@ python_prepare_all() {
 }
 
 python_configure_all() {
-	#set prefix
-	mydistutilsargs=( build --prefix=/usr )
+        local myconf=""
+        use gtk3 && myconf+=" --with-gtk=3.0"
+        use gtk3 || myconf+=" --with-gtk=2.0"
+        
+        mydistutilsargs=( build \
+            --prefix=/usr \
+            ${myconf}
+        )
 }
 
 pkg_postinst() {

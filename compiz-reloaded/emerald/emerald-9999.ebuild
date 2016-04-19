@@ -13,14 +13,21 @@ EGIT_REPO_URI="git://github.com/compiz-reloaded/emerald.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
-IUSE=""
+IUSE="gtk3"
 
 PDEPEND=">=compiz-reloaded/emerald-themes-${PV}"
 
 RDEPEND="
-	>=x11-libs/gtk+-2.8.0:2
-	x11-libs/libwnck:3
-	>=compiz-reloaded/compiz-${PV}
+	!gtk3? (
+            >=x11-libs/gtk+-2.8.0:2
+            >=compiz-reloaded/compiz-${PV}[-gtk3]
+            >=x11-libs/libwnck-2.22:1
+        )
+	gtk3? ( 
+            x11-libs/gtk+:3 
+            >=compiz-reloaded/compiz-${PV}[gtk3]
+            x11-libs/libwnck:3
+        )
 "
 
 DEPEND="${RDEPEND}
@@ -32,9 +39,6 @@ DEPEND="${RDEPEND}
 DOCS=( AUTHORS INSTALL NEWS TODO )
 
 src_prepare() {
-	# Fix pkg-config file pollution wrt #380197
-	epatch "${FILESDIR}"/${P}-pkgconfig-pollution.patch
-	
 	# Fix underlinking
 	append-libs -ldl -lm
 
@@ -44,10 +48,15 @@ src_prepare() {
 }
 
 src_configure() {
+        local myconf=""
+	use gtk3 || myconf+=" --with-gtk=2.0"
+	use gtk3 && myconf+=" --with-gtk=3.0"
+
 	econf \
 		--disable-static \
 		--enable-fast-install \
-		--disable-mime-update
+		--disable-mime-update \
+		${myconf}
 }
 
 src_install() {

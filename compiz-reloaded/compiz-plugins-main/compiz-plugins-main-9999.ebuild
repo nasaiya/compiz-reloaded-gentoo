@@ -32,6 +32,7 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS INSTALL NEWS"
 
+# This *is* needed in live ebuild!
 src_prepare() {
 	eautoreconf
 }

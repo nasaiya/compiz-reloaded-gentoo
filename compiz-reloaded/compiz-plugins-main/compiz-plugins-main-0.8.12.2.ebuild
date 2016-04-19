@@ -32,10 +32,6 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS INSTALL NEWS"
 
-src_prepare() {
-	eautoreconf
-}
-
 src_configure() {
 	econf \
 		--enable-fast-install \

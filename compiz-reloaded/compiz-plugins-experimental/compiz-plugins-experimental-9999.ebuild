@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI="5"
 
 inherit git-r3 autotools
 
@@ -32,6 +32,7 @@ DEPEND="${RDEPEND}
 
 DOCS="AUTHORS INSTALL NEWS"
 
+# This *is* needed for the live ebuild!
 src_prepare(){
     eautoreconf
 }

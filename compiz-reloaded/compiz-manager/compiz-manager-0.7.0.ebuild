@@ -11,7 +11,7 @@ SRC_URI="https://github.com/compiz-reloaded/compiz-manager/releases/download/v${
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
-RDEPEND=""
+RDEPEND="x11-apps/xvinfo"
 
 src_install() {
     dobin compiz-manager

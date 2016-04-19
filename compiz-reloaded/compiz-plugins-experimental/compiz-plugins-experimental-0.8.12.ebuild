@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit autotools eutils
+inherit autotools
 
 DESCRIPTION="Compiz Fusion Window Decorator Experimental Plugins"
 HOMEPAGE="https://github.com/compiz-reloaded"

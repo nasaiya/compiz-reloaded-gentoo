@@ -15,14 +15,22 @@ SRC_URI="https://github.com/compiz-reloaded/simple-ccsm/releases/download/v${PV}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
+IUSE="gtk3"
 
 DEPEND="
 	dev-util/intltool
 	virtual/pkgconfig"
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
-	>=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}]
-	>=compiz-reloaded/ccsm-0.8.12[${PYTHON_USEDEP}]
+	!gtk3? ( 
+            >=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}] 
+            >=compiz-reloaded/ccsm-0.8.12[-gtk3,${PYTHON_USEDEP}]
+        )
+	gtk3? ( 
+            >=compiz-reloaded/ccsm-0.8.12[gtk3,${PYTHON_USEDEP}]
+            dev-python/pygobject 
+            dev-python/pycairo 
+        )
 "
 
 python_prepare_all() {
@@ -38,14 +46,23 @@ python_prepare_all() {
 }
 
 python_configure_all() {
-	mydistutilsargs=( build --prefix=/usr )
+        local myconf=""
+        use gtk3 && myconf+=" --with-gtk=3.0"
+        use gtk3 || myconf+=" --with-gtk=2.0"
+        
+        mydistutilsargs=( build \
+            --prefix=/usr \
+            ${myconf}
+        )
 }
 
 pkg_preinst() {
+        # FIXME: Is this needed/correct?
 	gnome2_icon_savelist
 }
 
 pkg_postinst() {
+        # FIXME: Is this needed/correct?
 	gnome2_icon_cache_update
 
     elog "Do NOT report bugs about this package!"
@@ -55,5 +72,6 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+        # FIXME: Is this needed/correct?
 	gnome2_icon_cache_update
 }
