@@ -18,9 +18,10 @@ KEYWORDS="-*"
 IUSE="+gtk3 gtk2"
 REQUIRED_USE="^^ ( gtk2 gtk3 )"
 
+# FIXME : use gobject introspection instead of pygtk in the below code
+
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-0.8.12[${PYTHON_USEDEP}]
-	# FIXME : use gobject introspection instead of pygtk
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
 	dev-python/pygobject
 	dev-python/pycairo

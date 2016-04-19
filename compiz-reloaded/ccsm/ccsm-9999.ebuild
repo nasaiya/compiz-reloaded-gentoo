@@ -16,9 +16,10 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="-*"
 
+# FIXME : use gobject introspection instead of pygtk in the below code
+
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-${PV}[${PYTHON_USEDEP}]
-	# FIXME : use gobject introspection instead of pygtk
 	>=dev-python/pygtk-2.12:2[${PYTHON_USEDEP}]
 	dev-python/pygobject
 	dev-python/pycairo
