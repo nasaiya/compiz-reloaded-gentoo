@@ -74,7 +74,6 @@ DEPEND="${COMMONDEPEND}
 "
 
 RDEPEND="${COMMONDEPEND}
-	x11-apps/mesa-progs
 	x11-apps/xdpyinfo
 	x11-apps/xset
 	x11-apps/xvinfo
