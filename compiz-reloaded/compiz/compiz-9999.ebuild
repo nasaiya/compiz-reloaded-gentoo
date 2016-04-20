@@ -67,9 +67,6 @@ RDEPEND="${COMMONDEPEND}
 DOCS=( AUTHORS ChangeLog NEWS TODO )
 
 src_prepare() {
-	echo gtk/gnome/compiz-wm.desktop.in >> po/POTFILES.skip
-	echo metadata/core.xml.in >> po/POTFILES.skip
-
 	eautoreconf
 }
 
