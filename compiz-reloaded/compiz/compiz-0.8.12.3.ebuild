@@ -74,7 +74,6 @@ DEPEND="${COMMONDEPEND}
 "
 
 RDEPEND="${COMMONDEPEND}
-	x11-apps/mesa-progs
 	x11-apps/xdpyinfo
 	x11-apps/xset
 "
@@ -82,9 +81,6 @@ RDEPEND="${COMMONDEPEND}
 DOCS=( AUTHORS ChangeLog NEWS TODO )
 
 src_prepare() {
-	echo gtk/gnome/compiz-wm.desktop.in >> po/POTFILES.skip
-	echo metadata/core.xml.in >> po/POTFILES.skip
-
 	eautoreconf
 }
 
