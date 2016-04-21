@@ -14,7 +14,6 @@ LICENSE="GPL-2 LGPL-2.1 MIT"
 SLOT="0"
 KEYWORDS="-*"
 IUSE="gtk3 +cairo dbus fuse +svg inotify marco mate gsettings compizconfig"
-REQUIRED_USE="marco? ( gtk3 )"
 
 COMMONDEPEND="
 	>=dev-libs/glib-2
