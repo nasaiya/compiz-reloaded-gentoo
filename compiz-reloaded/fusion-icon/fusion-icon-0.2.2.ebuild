@@ -5,7 +5,7 @@
 EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 eutils gnome2-utils
+inherit distutils-r1 eutils
 
 DESCRIPTION="Compiz Fusion Tray Icon and Manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
@@ -31,7 +31,7 @@ RDEPEND="
             dev-python/pycairo 
         )
         qt5? ( 	dev-python/PyQt5[${PYTHON_USEDEP}] )
-        !qt5? ( dev-python/PyQt5[X,${PYTHON_USEDEP}] )
+        !qt5? ( dev-python/PyQt4[X,${PYTHON_USEDEP}] )
 "
 
 DEPEND="${RDEPEND}"
@@ -59,7 +59,7 @@ python_install() {
 }
 
 pkg_postinst() {
-	use gtk3 || gnome2_icon_cache_update # is this right??
+#	use gtk3 || gnome2_icon_cache_update # is this right??
 	use gtk3 && gtk-update-icon-cache
 
     elog "Do NOT report bugs about this package!"
@@ -70,6 +70,6 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	use gtk3 || gnome2_icon_cache_update # is this right??
+#	use gtk3 || gnome2_icon_cache_update # is this right??
 	use gtk3 && gtk-update-icon-cache
 }

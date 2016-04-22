@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools eutils gnome2-utils git-r3
+inherit autotools eutils git-r3
 
 DESCRIPTION="OpenGL window and compositing manager"
 HOMEPAGE="https://github.com/compiz-reloaded"
