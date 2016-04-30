@@ -20,12 +20,10 @@ PDEPEND=">=compiz-reloaded/emerald-themes-0.8.12"
 RDEPEND="
 	!gtk3? (
             >=x11-libs/gtk+-2.8.0:2
-            >=compiz-reloaded/compiz-0.8.12[-gtk3]
             >=x11-libs/libwnck-2.22:1
         )
 	gtk3? ( 
             x11-libs/gtk+:3 
-            >=compiz-reloaded/compiz-0.8.12[gtk3]
             x11-libs/libwnck:3
         )
 "
