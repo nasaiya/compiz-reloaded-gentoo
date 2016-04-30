@@ -21,12 +21,10 @@ IUSE="gtk3 qt5"
 RDEPEND="
 	>=compiz-reloaded/compizconfig-python-0.8.12
 	!gtk3? ( 
-            >=compiz-reloaded/compiz-0.8.12[-gtk3]
             >=dev-python/pygtk-2.10:2[${PYTHON_USEDEP}] 
             dev-libs/libappindicator 
         )
         gtk3? ( 
-            >=compiz-reloaded/compiz-0.8.12[gtk3]
             dev-python/pygobject 
             dev-python/pycairo 
         )
